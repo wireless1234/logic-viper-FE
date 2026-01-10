@@ -21,7 +21,8 @@ const Testimonials = () => {
 
     const onSelect = () => {
       const selected = api.selectedScrollSnap();
-      setCenterIndex(selected + 1);
+
+      setCenterIndex(selected);
     };
 
     onSelect();
@@ -58,7 +59,7 @@ const Testimonials = () => {
             <Carousel
               setApi={setApi}
               opts={{
-                align: "start",
+                align: "center",
                 loop: true,
               }}
               plugins={[
@@ -66,13 +67,13 @@ const Testimonials = () => {
                   delay: 2000,
                 }),
               ]}
-              className="w-full"
+              className="w-full md:px-12 lg:px-0"
             >
               <CarouselContent className="-ml-1">
                 {testimonialData.map((item, index) => (
                   <CarouselItem
                     key={index}
-                    className="pl-1 md:basis-1/2 lg:basis-1/3"
+                    className="pl-1 md:basis-3/4 lg:basis-1/3"
                   >
                     <div className="p-1">
                       <Card>

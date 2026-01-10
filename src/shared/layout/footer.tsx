@@ -144,7 +144,7 @@ const Footer = (props: Props) => {
           </div>
         </div>
         <hr className="my-3.75 border-[#75bda7]" />
-        <div className="px-6.25 pt-10 pb-9 ">
+        <div className="px-6.25 py-5 md:pt-10 md:pb-9 ">
           <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
             <p className="text-[15px] text-white">
               Copyright © 2024 Logic Viper Tech
