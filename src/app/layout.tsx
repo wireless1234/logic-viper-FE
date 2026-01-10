@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Barlow_Condensed, Rubik } from "next/font/google";
+import NavBar from "@/shared/layout/nav-bar";
+import Footer from "@/shared/layout/footer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -9,6 +11,20 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const barlowCondensed = Barlow_Condensed({
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-barlow-condensed",
+  display: "swap",
+  subsets: ["latin"],
+});
+
+const rubik = Rubik({
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-rubik",
+  display: "swap",
   subsets: ["latin"],
 });
 
@@ -25,9 +41,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${barlowCondensed.variable} ${rubik.variable} antialiased`}
       >
+        <NavBar />
         {children}
+        <Footer />
       </body>
     </html>
   );
