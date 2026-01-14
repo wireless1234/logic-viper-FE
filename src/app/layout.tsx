@@ -11,6 +11,7 @@ import Footer from "@/shared/layout/footer";
 import "./globals.css";
 import CartModal from "@/shared/layout/cart-drawer";
 import AppContext from "../context/appcontext";
+import ScrollButton from "@/shared/layout/scroll-button";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,6 +63,7 @@ export default function RootLayout({
           <NavBar />
           {children}
           <CartModal />
+          <ScrollButton />
           <Footer />
         </AppContext>
       </body>

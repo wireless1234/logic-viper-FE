@@ -1,11 +1,11 @@
 import React from "react";
-import Product from "@/features/shopPage/product";
+import Product from "@/features/shopPage/components/product";
 
 type Props = {};
 
 const ViewProduct = (props: Props) => {
   return (
-    <div>
+    <div className="py-25">
       <Product />
     </div>
   );

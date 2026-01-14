@@ -206,3 +206,8 @@
 .animate-slideOutDown {
   animation: slideOutDown 300ms ease-in forwards;
 }
+/* table,
+th,
+td {
+  border: 1px solid black;
+} */

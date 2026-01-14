@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { BiSolidStar } from "react-icons/bi";
 import { useCart } from "@/context/cartContext";
-import { useCartDrawer } from "@/context/cartDrawerContext";
+import { IoIosLink } from "react-icons/io";
+import { FaRegEye } from "react-icons/fa";
 
 type Product = {
   id: number;
@@ -21,8 +22,7 @@ type Props = {
 
 const Shop = ({ products }: Props) => {
   const [sort, setSort] = useState("menu_order");
-  const { addToCart, removeFromCart, isInCart } = useCart();
-  const { openCart } = useCartDrawer();
+  const { addToCart, isInCart } = useCart();
 
   return (
     <div className=" max-w-330 mx-auto px-3">
@@ -79,22 +79,52 @@ const Shop = ({ products }: Props) => {
                         className="transition-transform duration-1000 ease-[cubic-bezier(0.25,0.45,0.45,0.95)] group-hover:scale-110 border-b"
                       />
                     </Link>
-                    <ul className="hidden absolute top-0 left-0 bg-blue-500 group-hover:visible">
-                      <li className="product-link">
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target={`#productsModalCenter${product.id}`}
-                        >
-                          <i className="fa fa-eye"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href={product.link}>
-                          <i className="fa fa-link" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                    </ul>
+                    <div className="absolute flex items-center justify-center invisible group-hover:visible top-0 left-0 w-full h-full bg-black/20">
+                      <ul
+                        className="   
+             
+             grid grid-cols-2  gap-2 p-0"
+                      >
+                        {/* Top-left */}
+                        <li className="flex items-start justify-start">
+                          <Link
+                            href={product.link}
+                            className="inline-flex items-center justify-center
+                 rounded-full border bg-white p-4
+                 hover:text-[#75bda7] hover:bg-[#75bda7] text-white"
+                          >
+                            <IoIosLink className="scale-x-[-1]" />
+                          </Link>
+                        </li>
+
+                        {/* Top-right (empty cell to preserve grid) */}
+                        <li />
+
+                        {/* Bottom-left */}
+                        <li className="flex items-start justify-start">
+                          <Link
+                            href="/shop/#"
+                            className="inline-flex items-center justify-center
+                 rounded-full border bg-white p-4
+                 text-[#75bda7] hover:bg-[#75bda7] hover:text-white"
+                          >
+                            <FaRegEye />
+                          </Link>
+                        </li>
+
+                        {/* Bottom-right */}
+                        <li className="flex items-start justify-start">
+                          <Link
+                            href={`/shop/${product.name}`}
+                            className="inline-flex items-center justify-center
+                 rounded-full border bg-white p-4
+                 text-[#75bda7] hover:bg-[#75bda7] hover:text-white"
+                          >
+                            <IoIosLink className="scale-x-[-1]" />
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
 
                   <div className="flex flex-col items-center justify-center py-7.5 px-3.75">
@@ -143,13 +173,12 @@ const Shop = ({ products }: Props) => {
                       Add to cart
                     </button>
                     {isInCart(product.id) && (
-                      <button
-                        type="button"
-                        className="py-2.5 px-5.5 w-full font-rubik text-black"
-                        onClick={openCart}
+                      <Link
+                        href="/cart"
+                        className="py-2.5 text-center px-5.5 w-full font-rubik text-black"
                       >
                         View Cart
-                      </button>
+                      </Link>
                     )}
                   </div>
                 </div>
