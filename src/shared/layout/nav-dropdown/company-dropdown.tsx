@@ -11,7 +11,7 @@ const menuData = [
     title: "About Us",
     description: "Learn more about Logic Viper, our mission, and values",
     icon: <BsChatQuote className="scale-x-[-1]" />,
-    link: "#",
+    link: "/about",
   },
   {
     id: 2,

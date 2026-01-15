@@ -20,7 +20,7 @@ const insightData = [
     description:
       "Dive into the latest industry trends and cutting-edge IT insights",
     icon: <PiArticleNyTimesLight />,
-    link: "#",
+    link: "/blog",
   },
   {
     id: 3,
@@ -28,7 +28,7 @@ const insightData = [
     description:
       "Join us in person or online to stay ahead in the world of IT innovation",
     icon: <PiCalendarDots />,
-    link: "#",
+    link: "/events",
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ const insightData = [
     description:
       "Access expert-driven technical insights and valuable resources",
     icon: <RiFilePaper2Line />,
-    link: "#",
+    link: "/events",
   },
   {
     id: 5,
@@ -44,7 +44,7 @@ const insightData = [
     description:
       "Discover how we turn IT challenges into success for our clients",
     icon: <GoShieldCheck />,
-    link: "#",
+    link: "/testimonials",
   },
 ];
 
