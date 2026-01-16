@@ -28,15 +28,16 @@ const data = [
 
 const FeaturesCard = () => {
   return (
-    <div className="grid lg:grid-cols-3 mt-8.75 lg:mt-24 lg:gap-5">
+    <div className="grid lg:grid-cols-3 mt-8.75 lg:mt-28 lg:gap-5">
       {data.map((item, i) => (
         <div
           key={i}
           className="
       relative
       bg-[#140f14]
-      p-5
-      lg:border-r-2 lg:border-[#7cc0ab]
+      px-5
+      py-8
+      lg:border-r-3 lg:border-[#7cc0ab]
       overflow-hidden
       h-fit
       group

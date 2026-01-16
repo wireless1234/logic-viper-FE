@@ -7,7 +7,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-serif-display: var(--font-geist-serif-display);
+  --font-serif-display: var(--font-playfair);
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-barlow-condensed);
   --font-rubik: var(--font-rubik);
@@ -206,3 +206,8 @@
 .animate-slideOutDown {
   animation: slideOutDown 300ms ease-in forwards;
 }
+/* table,
+th,
+td {
+  border: 1px solid black;
+} */

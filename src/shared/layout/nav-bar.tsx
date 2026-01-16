@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { BsCaretDown, BsCaretRight, BsCaretUp } from "react-icons/bs";
+import { BsCaretDown, BsCaretRight } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
@@ -10,12 +10,15 @@ import CompanyDropdown from "./nav-dropdown/company-dropdown";
 import InsightsDropdown from "./nav-dropdown/insights-dropdown";
 import ServicesDropdown from "./nav-dropdown/services_dropdown";
 import IndustriesDropdown from "./nav-dropdown/industries_dropdown";
-import Services from "../../features/landingPage/components/services/services";
+import { useCartDrawer } from "../../context/cartDrawerContext";
+import { useCart } from "../../context/cartContext";
 
 type Props = {};
 
 const NavBar = (props: Props) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const { openCart } = useCartDrawer();
+  const { totalItems } = useCart();
   const [activeDropdown, setActiveDropdown] = React.useState<string | null>(
     null
   );
@@ -75,7 +78,9 @@ const NavBar = (props: Props) => {
               </span>
               <IndustriesDropdown />
             </li>
-            <li className="flex items-center gap-1">Shop</li>
+            <li className="flex items-center gap-1">
+              <Link href="/shop"> Shop</Link>
+            </li>
             <li className="flex items-center gap-1.5">
               <span>
                 <FaRegUser />
@@ -182,7 +187,9 @@ const NavBar = (props: Props) => {
                   </li>
 
                   {/* Shop */}
-                  <li className="flex items-center cursor-pointer">Shop</li>
+                  <li className="flex items-center cursor-pointer">
+                    <Link href="/shop"> Shop</Link>
+                  </li>
 
                   {/* Client Hub */}
                   <li className="flex items-center justify-between cursor-pointer">
@@ -195,18 +202,19 @@ const NavBar = (props: Props) => {
             <div className="md:flex hidden items-center gap-3">
               <button
                 type="button"
+                onClick={openCart}
                 className="hover:bg-[#7cc0ab] group bg-white rounded px-5 py-3"
               >
                 <span className="relative">
                   <FaCartShopping className="text-[#7cc0ab] group-hover:text-white size-5" />
                   <span className="absolute bg-red-600 py-0.5 px-1.5 rounded-full text-white text-[0.5rem] -top-2 -right-2">
-                    0
+                    {totalItems}
                   </span>
                 </span>
               </button>
               <button
                 type="button"
-                className="border-[#7cc0ab] font-semibold px-5 py-2 border rounded hover:scale-110 hover:bg-[#7cc0ab] transition-transform duration-250 ease-out text-[#7cc0ab] hover:text-white"
+                className="border-[#7cc0ab] font-semibold px-5 py-2 border rounded hover:scale-110 hover:bg-[#7cc0ab] transition-transform duration-250 ease-out text-white"
               >
                 Talk to an Expert
               </button>

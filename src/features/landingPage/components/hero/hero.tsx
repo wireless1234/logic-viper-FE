@@ -23,12 +23,12 @@ const Hero = (props: Props) => {
         <div className=" w-full z-20  max-w-330 mx-auto flex items-center  justify-items-start  lg:px-3">
           <div className="flex flex-col mt-40 xl:mt-56">
             <div className="flex flex-col lg:flex-row w-full items-center justify-between">
-              <div className="text-white w-full  text-center lg:text-left max-w-165 ">
-                <p className="mb-2.5 text-[18px] font-serif">
+              <div className="text-white w-full  text-center lg:text-left max-w-175 ">
+                <p className="mb-3 text-[18px] font-serif">
                   Leveraging the Latest in Cybersecurity for Unmatched
                   Protection
                 </p>
-                <h1 className="text-[35px] md:text-[40px] lg:text-[70px] font-serif xl:text-[75px] mb-5 lg:mb-6.25 font-bold xl:leading-20">
+                <h1 className="text-[35px] md:text-[40px] lg:text-[70px] font-serif xl:text-[80px] mb-5 lg:mb-6.25 font-bold xl:leading-21">
                   Advanced Cybersecurity Solutions For The Modern Era
                 </h1>
                 <p className="text-base mb-6.25 lg:mb-8.75">
