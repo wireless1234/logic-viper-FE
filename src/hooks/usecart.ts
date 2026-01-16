@@ -1,86 +1,64 @@
-"use client";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { fetchCart, addToCart, clearCart } from "@/services/cartService";
+import Cookies from "js-cookie";
+import { v4 as uuidv4 } from "uuid";
+import { Cart } from "@/types";
 
-import { useState, useCallback, useMemo } from "react";
-
-export type CartItem = {
-  id: number;
-  name: string;
-  price: number; // Use number for calculations
-  img: string;
-  quantity: number;
-};
-
+// Hook for managing cart state
 export const useCart = () => {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const queryClient = useQueryClient();
+  let sessionKey = Cookies.get("session_key");
 
-  // Add item or increase quantity if exists
-  const addToCart = useCallback((product: Omit<CartItem, "quantity">) => {
-    setCart((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
-      if (existing) {
-        return prev.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
-  }, []);
+  // Ensure sessionKey exists
+  if (!sessionKey) {
+    sessionKey = uuidv4(); // Generate UUID if missing
 
-  // Remove item completely
-  const removeFromCart = useCallback((productId: number) => {
-    setCart((prev) => prev.filter((item) => item.id !== productId));
-  }, []);
+    console.log("Generated new session key for guest user usecart");
+    Cookies.set("session_key", sessionKey as string, { expires: 7 }); // Store for 7 days
+  }
 
-  // Increase quantity by 1
-  const increaseQuantity = useCallback((productId: number) => {
-    setCart((prev) =>
-      prev.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
-  }, []);
+  // Fetch Cart Items
+  const {
+    data: cart,
+    isLoading,
+    error,
+  } = useQuery<Cart>({
+    queryKey: ["cart", sessionKey],
+    queryFn: () => fetchCart(sessionKey),
+  });
 
-  // Decrease quantity by 1 (remove if quantity reaches 0)
-  const decreaseQuantity = useCallback((productId: number) => {
-    setCart((prev) =>
-      prev
-        .map((item) =>
-          item.id === productId
-            ? { ...item, quantity: Math.max(item.quantity - 1, 0) }
-            : item
-        )
-        .filter((item) => item.quantity > 0)
-    );
-  }, []);
+  // Add to Cart Mutation
+  const addToCartMutation = useMutation({
+    mutationFn: ({
+      items,
+      sessionKey,
+    }: {
+      items: { productId: number; quantity: number }[];
+      sessionKey?: string;
+    }) =>
+      addToCart({
+        items,
+        sessionKey: sessionKey || Cookies.get("session_key"),
+      }), // Ensure sessionKey is used
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart", sessionKey] });
+    },
+  });
 
-  // Check if item is in cart
-  const isInCart = useCallback(
-    (productId: number) => cart.some((item) => item.id === productId),
-    [cart]
-  );
-
-  // Total items in cart (sum of all quantities)
-  const totalItems = useMemo(
-    () => cart.reduce((sum, item) => sum + item.quantity, 0),
-    [cart]
-  );
-
-  // Total price
-  const totalPrice = useMemo(
-    () => cart.reduce((sum, item) => sum + item.quantity * item.price, 0),
-    [cart]
-  );
+  // Clear Cart Mutation
+  const clearCartMutation = useMutation({
+    mutationFn: () => clearCart(sessionKey),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart", sessionKey] });
+    },
+  });
 
   return {
     cart,
-    addToCart,
-    removeFromCart,
-    increaseQuantity,
-    decreaseQuantity,
-    isInCart,
-    totalItems,
-    totalPrice,
+    isLoading,
+    error,
+    addToCart: addToCartMutation.mutateAsync, // Use mutateAsync to return a Promise
+    clearCart: clearCartMutation.mutate,
+    sessionKey,
   };
 };

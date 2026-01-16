@@ -90,7 +90,7 @@ const RelatedProducts = (props: Props) => {
               </div>
 
               <div className="flex flex-col items-center justify-center py-7.5 px-3.75">
-                <h3 className="mb-3.75 text-[#0e0129] font-bold text-lg font-serif">
+                <h3 className="mb-3.75 text-[#0e0129] hover:text-[#75bda7] font-bold text-lg font-serif">
                   <Link href={`shop/${product.name}`}>{product.name}</Link>
                 </h3>
                 <span className="font-bold flex font-rubik items-center gap-2 text-[#0e0129] text-[15px] mb-2.5">

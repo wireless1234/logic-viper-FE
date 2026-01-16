@@ -70,7 +70,7 @@ const Shop = ({ products }: Props) => {
                 <div className="single-products">
                   <div className="overflow-hidden relative">
                     <Link
-                      href={`shop/${product.name}`}
+                      href={`/shop/product?name=${product.name}`}
                       className="overflow-hidden border-b"
                     >
                       <img
@@ -88,7 +88,7 @@ const Shop = ({ products }: Props) => {
                         {/* Top-left */}
                         <li className="flex items-start justify-start">
                           <Link
-                            href={product.link}
+                            href={`/shop/product?name=${product.name}`}
                             className="inline-flex items-center justify-center
                  rounded-full border bg-white p-4
                  hover:text-[#75bda7] hover:bg-[#75bda7] text-white"
@@ -103,7 +103,7 @@ const Shop = ({ products }: Props) => {
                         {/* Bottom-left */}
                         <li className="flex items-start justify-start">
                           <Link
-                            href="/shop/#"
+                            href={`/shop/product?name=${product.name}`}
                             className="inline-flex items-center justify-center
                  rounded-full border bg-white p-4
                  text-[#75bda7] hover:bg-[#75bda7] hover:text-white"
@@ -115,7 +115,7 @@ const Shop = ({ products }: Props) => {
                         {/* Bottom-right */}
                         <li className="flex items-start justify-start">
                           <Link
-                            href={`/shop/${product.name}`}
+                            href={`/shop/product?name=${product.name}`}
                             className="inline-flex items-center justify-center
                  rounded-full border bg-white p-4
                  text-[#75bda7] hover:bg-[#75bda7] hover:text-white"
@@ -128,8 +128,10 @@ const Shop = ({ products }: Props) => {
                   </div>
 
                   <div className="flex flex-col items-center justify-center py-7.5 px-3.75">
-                    <h3 className="mb-3.75 text-[#0e0129] font-bold text-lg font-serif">
-                      <Link href={`shop/${product.name}`}>{product.name}</Link>
+                    <h3 className="mb-3.75 text-[#0e0129] hover:text-[#75bda7] font-bold text-lg font-serif">
+                      <Link href={`/shop/product?name=${product.name}`}>
+                        {product.name}
+                      </Link>
                     </h3>
                     <span className="font-bold flex font-rubik items-center gap-2 text-[#0e0129] text-[15px] mb-2.5">
                       {product.oldPrice && (

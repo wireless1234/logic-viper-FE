@@ -8,13 +8,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import Link from "next/link";
 
 const CartModal: React.FC = () => {
-  const {
-    cart,
-    removeFromCart,
-    increaseQuantity,
-    decreaseQuantity,
-    totalPrice,
-  } = useCart();
+  const { cart, removeFromCart, totalPrice } = useCart();
   const { isOpen, closeCart } = useCartDrawer();
 
   if (!isOpen) return null; // Don't render if drawer is closed
@@ -44,7 +38,7 @@ const CartModal: React.FC = () => {
 
           {cart.map((item) => (
             <div key={item.id} className="flex items-center space-x-4 ">
-              <a href={`/shop/${item.name}`}>
+              <a href={`/shop/product?name=${item.name}`}>
                 <img
                   src={item.img}
                   alt={item.name}
@@ -54,7 +48,7 @@ const CartModal: React.FC = () => {
 
               <div className="flex-1">
                 <a
-                  href={`/shop/${item.name}`}
+                  href={`/shop/product?name=${item.name}`}
                   className="font-normal text-[#7cc0ab] hover:text-[#0e0129] font-rubik text-sm "
                 >
                   {item.name}
@@ -90,6 +84,7 @@ const CartModal: React.FC = () => {
 
             <div className="mt-4 font-rubik text-base grid grid-cols-2 gap-2 ">
               <Link
+                onClick={closeCart}
                 href="/cart"
                 className="bg-[#69727D]  py-2.5 text-center text-white"
               >
@@ -97,6 +92,7 @@ const CartModal: React.FC = () => {
               </Link>
               <Link
                 href="/checkout"
+                onClick={closeCart}
                 className="bg-[#69727D] text-white py-2.5 text-center "
               >
                 Checkout

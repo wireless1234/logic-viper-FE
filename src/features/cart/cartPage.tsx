@@ -95,8 +95,10 @@ const Cart = () => {
                       className="object-cover rounded"
                     />
                   </td>
-                  <td className="p-2 pl-3 text-[#75bda7] underline">
-                    {item.name}
+                  <td className="p-2 pl-3 text-[#75bda7] underline hover:no-underline">
+                    <Link href={`/shop/product?name=${item.name}`}>
+                      {item.name}
+                    </Link>
                   </td>
                   <td className="p-2 pl-4">${item.price.toFixed(2)}</td>
                   <td className="p-2 pl-4">

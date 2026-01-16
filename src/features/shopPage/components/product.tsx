@@ -4,22 +4,13 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { dummyProducts } from "@/lib/productsData";
+
 import ProductTabs from "./productsTab";
 import { useCart } from "@/context/cartContext";
 import RelatedProducts from "./related";
 import { FaCircleCheck } from "react-icons/fa6";
 import Link from "next/link";
-
-/* ---------- helpers ---------- */
-
-const formatLabel = (value: string) => {
-  const decoded = decodeURIComponent(value);
-
-  return decoded
-    .replace(/\+/g, " ")
-    .replace(/[-_]/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-};
+import { useSearchParams } from "next/navigation";
 
 const normalize = (value: string) =>
   value.toLowerCase().replace(/\+/g, " ").replace(/[-_]/g, " ").trim();
@@ -31,34 +22,23 @@ const Product = () => {
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState<number>(1);
   const [showMessage, setShowMessage] = useState<boolean>(false);
-
-  const segments = React.useMemo(
-    () => pathname.split("/").filter(Boolean),
-    [pathname]
-  );
-
-  const breadcrumbs = React.useMemo(
-    () =>
-      segments.map((segment, index) => ({
-        label: formatLabel(segment),
-        href: "/" + segments.slice(0, index + 1).join("/"),
-      })),
-    [segments]
-  );
-
-  const lastSegment = segments.at(-1);
+  const searchParams = useSearchParams();
+  const ProductName = searchParams.get("name") || "";
 
   const product = React.useMemo(() => {
-    if (!lastSegment) return null;
+    if (!ProductName) return null;
 
     return dummyProducts.find(
-      (item) =>
-        normalize(item.name) === normalize(decodeURIComponent(lastSegment))
+      (item) => normalize(item.name) === normalize(ProductName)
     );
-  }, [lastSegment]);
+  }, [ProductName]);
 
   if (!product) {
-    return <p>Product not found</p>;
+    return (
+      <div className="w-full py-25">
+        <p className="text-center">Product not found, {ProductName}</p>
+      </div>
+    );
   }
 
   const handleAddToCart = () => {
@@ -111,10 +91,13 @@ const Product = () => {
               )}
             </div>
             <div className="text-[#0e0129]">
-              <h2 className="font-serif font-bold text-3xl mb-3.75">
-                {product?.name}
-              </h2>
-              <p className="font-semibold text-[19px] font-rubik  mb-[5px]">
+              <div className="border-b">
+                <h2 className="font-serif font-bold text-3xl mb-3.75">
+                  {product?.name}
+                </h2>
+                <hr className="border-2 w-10 rounded-full -mb-0.75 border-[#75bda7]" />
+              </div>
+              <p className="font-semibold text-[19px] font-rubik mt-3 mb-1.25">
                 {product?.oldPrice && (
                   <del className="font-serif-display">
                     {" "}
@@ -123,7 +106,17 @@ const Product = () => {
                 )}{" "}
                 ${(product?.price).toFixed(2)}
               </p>
-              <p className="font-rubik text-[15px] mb-3.75">description</p>
+              <p className="font-rubik text-[15px] mb-3.75">
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo.
+              </p>
+              <p className="font-rubik text-[15px] mb-3.75">
+                There are many variations of passages of Lorem Ipsum available,
+                but the majority have suffered alteration in some form, by
+                injected humour, or randomised words which don’t look even
+                slightly.
+              </p>
               <div className="flex gap-1 max-w-[50%] ">
                 <input
                   type="number"
@@ -134,7 +127,7 @@ const Product = () => {
                 />
                 <button
                   type="button"
-                  className="border py-2.5 px-5.5 w-1/2 font-medium cursor-pointer font-rubik border-[#75bda7] text-[#75bda7] hover:bg-[#75bda7] hover:text-white transition-colors ease-in-out duration-75"
+                  className="border py-2.5 px-5.5 w-1/2 font-medium cursor-pointer font-rubik border-[#75bda7] hover:border-black hover:bg-black bg-[#75bda7] text-white transition-colors ease-in-out duration-75"
                   onClick={handleAddToCart}
                 >
                   Add to cart

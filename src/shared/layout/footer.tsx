@@ -104,11 +104,11 @@ const Footer = (props: Props) => {
               </li>
               <li>
                 <Link
-                  href="mailto:support@vicez-oz.com"
+                  href="mailto:support@logicviper.com"
                   className="flex hover:text-[#7cc0ab] items-center gap-3"
                 >
                   <LuMailOpen />
-                  support@vicez-oz.com
+                  support@logicviper.com
                 </Link>
               </li>
               <li>
