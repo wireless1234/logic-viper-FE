@@ -34,7 +34,7 @@ const CartModal: React.FC = () => {
 
         {/* Cart Items */}
         <div className="space-y-4">
-          {cart.length === 0 && <p>Your cart is empty.</p>}
+          {cart.length === 0 && <p>No products in the cart.</p>}
 
           {cart.map((item) => (
             <div key={item.id} className="flex items-center space-x-4 ">

@@ -12,7 +12,7 @@ const insightData = [
     description:
       "Watch client stories and uncover the power of strategic IT solutions",
     icon: <AiOutlinePlayCircle className="scale-x-[-1]" />,
-    link: "#",
+    link: "/testimonials",
   },
   {
     id: 2,

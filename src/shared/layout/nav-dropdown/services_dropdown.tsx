@@ -12,14 +12,14 @@ const serviceData = [
     description:
       "Advanced threat detection, incident response, & vulnerability management.",
     icon: <TbCloudLock className="scale-x-[-1]" />,
-    link: "#",
+    link: "/cyber-security-solution",
   },
   {
     id: 2,
     title: "Managed Security Services",
     description: "24/7 security monitoring, SIEM, and endpoint protection",
     icon: <AiOutlineDatabase />,
-    link: "#",
+    link: "/managed-security-services",
   },
   {
     id: 3,

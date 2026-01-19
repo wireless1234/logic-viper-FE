@@ -18,7 +18,7 @@ const menuData = [
     title: "Careers",
     description: "Explore exciting career opportunities with Logic Viper",
     icon: <TbBriefcase />,
-    link: "#",
+    link: "/careers",
   },
   {
     id: 3,
@@ -26,14 +26,14 @@ const menuData = [
     description:
       "Stay updated on the latest industry news and our achievements",
     icon: <FaRegNewspaper />,
-    link: "#",
+    link: "/blog",
   },
   {
     id: 4,
     title: "Locations",
     description: "Discover our global presence and office locations",
     icon: <TiLocationArrowOutline />,
-    link: "#",
+    link: "/contact-us",
   },
 ];
 

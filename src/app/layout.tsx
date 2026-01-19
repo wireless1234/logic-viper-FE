@@ -5,6 +5,7 @@ import {
   Barlow_Condensed,
   Rubik,
   Playfair_Display,
+  Shippori_Mincho,
 } from "next/font/google";
 import NavBar from "@/shared/layout/nav-bar";
 import Footer from "@/shared/layout/footer";
@@ -45,6 +46,13 @@ export const playfair = Playfair_Display({
   display: "swap",
 });
 
+export const shippori = Shippori_Mincho({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-shippori",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Logic Viper",
   description:
@@ -60,7 +68,7 @@ export default function RootLayout({
     <ReactQueryClientProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${barlowCondensed.variable} ${rubik.variable} antialiased relative`}
+          className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${barlowCondensed.variable} ${rubik.variable} ${shippori.variable} antialiased relative`}
         >
           <AppContext>
             <NavBar />

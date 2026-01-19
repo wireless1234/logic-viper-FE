@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useCart } from "../../context/cartContext";
 import { FaCircleCheck } from "react-icons/fa6";
 import { useState, useEffect } from "react";
+import { IoIosCalendar } from "react-icons/io";
 import Link from "next/link";
 
 const Cart = () => {
@@ -69,122 +70,144 @@ const Cart = () => {
           </div>
         )}
 
-        <div className="overflow-x-auto rounded">
-          <table className="w-full border border-gray-200 rounded-t">
-            <thead>
-              <tr className="uppercase">
-                <th className="p-3.75 text-left">Product</th>
-                <th className="p-3.75 text-left">Name</th>
-                <th className="p-3.75 text-left">Unit Price</th>
-                <th className="p-3.75 text-left">Quantity</th>
-                <th className="p-3.75 text-left">Subtotal</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cart.map((item) => (
-                <tr
-                  key={item.id}
-                  className="border-t text-sm font-semibold text-[#777]"
-                >
-                  <td className="p-2">
-                    <Image
-                      src={item.img}
-                      alt={item.name}
-                      width={80}
-                      height={80}
-                      className="object-cover rounded"
-                    />
-                  </td>
-                  <td className="p-2 pl-3 text-[#75bda7] underline hover:no-underline">
-                    <Link href={`/shop/product?name=${item.name}`}>
-                      {item.name}
-                    </Link>
-                  </td>
-                  <td className="p-2 pl-4">${item.price.toFixed(2)}</td>
-                  <td className="p-2 pl-4">
-                    <input
-                      type="number"
-                      className="w-16 px-2.5 py-[5px] text-center border text-black"
-                      min={1}
-                      value={quantities[item.id] || item.quantity}
-                      onChange={(e) =>
-                        handleInputChange(item.id, Number(e.target.value))
-                      }
-                    />
-                  </td>
-                  <td className="p-2 pl-4">
-                    $
-                    {(
-                      item.price * (quantities[item.id] || item.quantity)
-                    ).toFixed(2)}
-                  </td>
+        {cart.length === 0 && (
+          <>
+            {" "}
+            <div className="px-7.5 font-rubik text-[15px] py-3.75 flex items-center gap-4 border-t-3 border-[#75bda7] bg-[#f6f5f8] mb-7.5">
+              <IoIosCalendar className="text-[#75bda7]" />
+              <p>Your cart is currently empty.</p>
+            </div>
+            <Link
+              href="/shop"
+              className="bg-[#75BDA7] text-white px-7.5 py-[13px]  rounded text-[13px] font-bold "
+            >
+              Return Shop
+            </Link>
+          </>
+        )}
+
+        {cart.length > 0 && (
+          <div className="overflow-x-auto rounded">
+            <table className="w-full border border-gray-200 rounded-t">
+              <thead>
+                <tr className="uppercase">
+                  <th className="p-3.75 text-left">Product</th>
+                  <th className="p-3.75 text-left">Name</th>
+                  <th className="p-3.75 text-left">Unit Price</th>
+                  <th className="p-3.75 text-left">Quantity</th>
+                  <th className="p-3.75 text-left">Subtotal</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {cart.map((item) => (
+                  <tr
+                    key={item.id}
+                    className="border-t text-sm font-semibold text-[#777]"
+                  >
+                    <td className="p-2">
+                      <Image
+                        src={item.img}
+                        alt={item.name}
+                        width={80}
+                        height={80}
+                        className="object-cover rounded"
+                      />
+                    </td>
+                    <td className="p-2 pl-3 text-[#75bda7] underline hover:no-underline">
+                      <Link href={`/shop/product?name=${item.name}`}>
+                        {item.name}
+                      </Link>
+                    </td>
+                    <td className="p-2 pl-4">${item.price.toFixed(2)}</td>
+                    <td className="p-2 pl-4">
+                      <input
+                        type="number"
+                        className="w-16 px-2.5 py-[5px] text-center border text-black"
+                        min={1}
+                        value={quantities[item.id] || item.quantity}
+                        onChange={(e) =>
+                          handleInputChange(item.id, Number(e.target.value))
+                        }
+                      />
+                    </td>
+                    <td className="p-2 pl-4">
+                      $
+                      {(
+                        item.price * (quantities[item.id] || item.quantity)
+                      ).toFixed(2)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
 
       {/* Coupon & Update */}
-      <div className="flex rounded-b border border-t-0 flex-col md:flex-row px-3 py-2.5 justify-between items-start  gap-4">
-        <div className="flex items-center gap-2.5">
-          <input
-            type="text"
-            placeholder="Coupon code"
-            className="border bg-[#F2F9FC] p-2 rounded px-3.75 py-2.5"
-          />
-          <div className="flex items-center gap-2">
-            Coupon:
-            <button className="bg-[#75BDA7] text-white px-7.5 py-[13px] rounded text-[13px] font-bold ">
-              Apply Coupon
-            </button>
+      {cart.length > 0 && (
+        <div className="flex rounded-b border border-t-0 flex-col md:flex-row px-3 py-2.5 justify-between items-start  gap-4">
+          <div className="flex items-center gap-2.5">
+            <input
+              type="text"
+              placeholder="Coupon code"
+              className="border bg-[#F2F9FC] p-2 rounded px-3.75 py-2.5"
+            />
+            <div className="flex items-center gap-2">
+              Coupon:
+              <button className="bg-[#75BDA7] text-white px-7.5 py-[13px] rounded text-[13px] font-bold ">
+                Apply Coupon
+              </button>
+            </div>
           </div>
+          <button
+            onClick={handleUpdateCart}
+            // disabled={quantities.length === 0}
+            className="bg-[#75BDA7] text-white px-7.5 py-[13px] rounded text-[13px] font-bold "
+          >
+            Update Cart
+          </button>
         </div>
-        <button
-          onClick={handleUpdateCart}
-          // disabled={quantities.length === 0}
-          className="bg-[#75BDA7] text-white px-7.5 py-[13px] rounded text-[13px] font-bold "
-        >
-          Update Cart
-        </button>
-      </div>
+      )}
 
       {/* Totals */}
-      <div className="mt-8 max-w-[600px] w-full border shadow mx-auto border-gray-200 p-10">
-        <h3 className="text-[25px] font-semibold mb-3.75 font-serif">
-          Cart Totals
-        </h3>
-        <div className="overflow-x-auto">
-          <table className="w-full border border-gray-200 text-sm">
-            <tbody>
-              {/* Subtotal */}
-              <tr className="border-b">
-                <th className="text-left font-bold px-4 py-3">Subtotal</th>
-                <td className=" px-4 py-3">
-                  <span className="font-semibold text-[#777]">
-                    ${subtotal.toFixed(2)}
-                  </span>
-                </td>
-              </tr>
+      {cart.length > 0 && (
+        <div className="mt-8 max-w-[600px] w-full border shadow mx-auto border-gray-200 p-10">
+          <h3 className="text-[25px] font-semibold mb-3.75 font-serif">
+            Cart Totals
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full border border-gray-200 text-sm">
+              <tbody>
+                {/* Subtotal */}
+                <tr className="border-b">
+                  <th className="text-left font-bold px-4 py-3">Subtotal</th>
+                  <td className=" px-4 py-3">
+                    <span className="font-semibold text-[#777]">
+                      ${subtotal.toFixed(2)}
+                    </span>
+                  </td>
+                </tr>
 
-              {/* Total */}
-              <tr>
-                <th className="text-left font-bold px-4 py-3">Total</th>
-                <td className=" px-4 py-3">
-                  <strong className="text-lg">${subtotal.toFixed(2)}</strong>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                {/* Total */}
+                <tr>
+                  <th className="text-left font-bold px-4 py-3">Total</th>
+                  <td className=" px-4 py-3">
+                    <strong className="text-lg">${subtotal.toFixed(2)}</strong>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="h-7.5"></div>
+          <Link
+            href="/checkout"
+            className="bg-[#75BDA7] text-white px-7.5 py-[13px]  rounded text-[13px] font-bold "
+          >
+            Proceed to Checkout
+          </Link>
         </div>
-        <div className="h-7.5"></div>
-        <Link
-          href="/checkout"
-          className="bg-[#75BDA7] text-white px-7.5 py-[13px]  rounded text-[13px] font-bold "
-        >
-          Proceed to Checkout
-        </Link>
-      </div>
+      )}
     </div>
   );
 };
