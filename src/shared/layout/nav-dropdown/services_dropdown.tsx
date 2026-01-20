@@ -27,7 +27,7 @@ const serviceData = [
     description:
       "Efficient project planning, risk management, and resource optimization.",
     icon: <LuChartColumnIncreasing />,
-    link: "#",
+    link: "/project-management",
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ const serviceData = [
     description:
       "Strategic technology planning, infrastructure assessment, and business continuity services",
     icon: <MdOutlinePeople />,
-    link: "#",
+    link: "/it-consulting-service",
   },
   {
     id: 5,
@@ -43,7 +43,7 @@ const serviceData = [
     description:
       "Outsourcing, IT Support, Maintenance, Managed Services with Technical Expertise",
     icon: <TbCloudCog />,
-    link: "#",
+    link: "/managed-solutions",
   },
   {
     id: 6,
@@ -51,7 +51,7 @@ const serviceData = [
     description:
       "Custom software solutions tailored to meet clients' unique requirements built with robust frameworks",
     icon: <MdOutlineImportantDevices />,
-    link: "#",
+    link: "/application-development",
   },
 ];
 

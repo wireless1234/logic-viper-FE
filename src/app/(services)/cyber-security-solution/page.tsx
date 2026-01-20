@@ -17,6 +17,14 @@ const CybersecuritySolution = () => {
   return (
     <div className="bg-white">
       <div className="h-[47vh] bg-[url('/images/privacy.webp')] bg-cover bg-no-repeat bg-center relative">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/images/cyber.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
         <div className="absolute  w-full h-full font-serif bg-black/50 text-end text-white text-[65px] font-bold flex items-center justify-center">
           <h1 className="mt-36">Cybersecurity Solution</h1>
         </div>

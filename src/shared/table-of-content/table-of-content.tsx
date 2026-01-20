@@ -39,7 +39,7 @@ export default function TableOfContents({ tocData }: TableOfContentsProps) {
 
   const renderTocItems = (items: TocItem[], level = 0, parentIndex = "") => {
     return (
-      <ol className={`space-y-2 ${level > 0 ? "pl-5 mt-2" : ""}`}>
+      <ol className={`space-y-3 ${level > 0 ? "pl-5 mt-2" : ""}`}>
         {items.map((item, index) => {
           const numbering = parentIndex
             ? `${parentIndex}.${index + 1}`
@@ -48,7 +48,7 @@ export default function TableOfContents({ tocData }: TableOfContentsProps) {
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
-                className={`block transition-colors ${
+                className={`block transition-colors font-rubik text-[15px] ${
                   activeId === item.id
                     ? "text-[#7cc0ab] font-medium"
                     : "text-white hover:text-[#7cc0ab]"
