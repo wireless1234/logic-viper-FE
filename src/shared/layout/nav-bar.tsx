@@ -20,7 +20,7 @@ const NavBar = (props: Props) => {
   const { openCart } = useCartDrawer();
   const { totalItems } = useCart();
   const [activeDropdown, setActiveDropdown] = React.useState<string | null>(
-    null
+    null,
   );
 
   const toggleDropdown = (name: string) => {
@@ -82,10 +82,12 @@ const NavBar = (props: Props) => {
               <Link href="/shop"> Shop</Link>
             </li>
             <li className="flex items-center gap-1.5">
-              <span>
-                <FaRegUser />
-              </span>
-              Client Hub
+              <Link className="flex items-center gap-1.5" href="/client-hub">
+                <span>
+                  <FaRegUser />
+                </span>
+                Client Hub
+              </Link>
             </li>
           </ul>
           <div className="flex items-center gap-3">
@@ -193,8 +195,13 @@ const NavBar = (props: Props) => {
 
                   {/* Client Hub */}
                   <li className="flex items-center justify-between cursor-pointer">
-                    Client Hub
-                    <FaRegUser />
+                    <Link
+                      className="flex items-center justify-between"
+                      href="/client-hub"
+                    >
+                      Client Hub
+                      <FaRegUser />
+                    </Link>
                   </li>
                 </ul>
               )}

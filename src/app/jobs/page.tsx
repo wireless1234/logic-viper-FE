@@ -6,7 +6,7 @@ import { FaBriefcase } from "react-icons/fa";
 export default function JobsPage() {
   return (
     <main className="bg-white py-12 ">
-      <div className="max-w-7xl mx-auto px-4 mt-24">
+      <div className="max-w-330 mx-auto px-4 mt-24">
         {/* Page Title */}
         <h2 className="text-[32px] font-serif font-bold  mb-10">
           Build Your Future Here
@@ -70,13 +70,15 @@ export default function JobsPage() {
 
                 <div>
                   <h4 className="text-xl font-semibold">
-                    <Link href="/jobs/water-manager">Water Manager</Link>
+                    <Link href="/jobs/view-job?id=water-manager">
+                      Water Manager
+                    </Link>
                   </h4>
                 </div>
               </div>
 
               <Link
-                href="/jobs/water-manager"
+                href="/jobs/view-job?id=water-manager"
                 className="inline-block bg-primary text-white px-6 py-2 rounded font-semibold"
               >
                 Apply Now
@@ -123,13 +125,15 @@ export default function JobsPage() {
 
                 <div>
                   <h4 className="text-xl font-semibold">
-                    <Link href="/jobs/water-manager">Care Manager</Link>
+                    <Link href="/jobs/view-job?id=care-manager">
+                      Care Manager
+                    </Link>
                   </h4>
                 </div>
               </div>
 
               <Link
-                href="/jobs/water-manager"
+                href="/jobs/view-job?id=care-manager"
                 className="inline-block bg-primary text-white px-6 py-2 rounded font-semibold"
               >
                 Apply Now
@@ -163,18 +167,5 @@ export default function JobsPage() {
         </div>
       </div>
     </main>
-  );
-}
-
-/* ---------------------------------- */
-/* Helper Component                   */
-/* ---------------------------------- */
-
-function Feature({ title, value }: { title: string; value: string }) {
-  return (
-    <div className="border rounded p-3">
-      <h4 className="font-semibold text-gray-800">{title}</h4>
-      <p className="text-gray-600">{value}</p>
-    </div>
   );
 }

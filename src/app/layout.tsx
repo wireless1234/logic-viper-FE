@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import {
-  Geist,
-  Geist_Mono,
   Barlow_Condensed,
   Rubik,
-  Playfair_Display,
   Shippori_Mincho,
+  Roboto,
 } from "next/font/google";
 import NavBar from "@/shared/layout/nav-bar";
 import Footer from "@/shared/layout/footer";
@@ -14,16 +12,6 @@ import CartModal from "@/shared/layout/cart-drawer";
 import AppContext from "../context/appcontext";
 import ScrollButton from "@/shared/layout/scroll-button";
 import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const barlowCondensed = Barlow_Condensed({
   weight: ["300", "400", "500", "600", "700"],
@@ -39,10 +27,10 @@ const rubik = Rubik({
   subsets: ["latin"],
 });
 
-export const playfair = Playfair_Display({
+export const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-playfair",
+  variable: "--font-roboto",
   display: "swap",
 });
 
@@ -68,7 +56,7 @@ export default function RootLayout({
     <ReactQueryClientProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${barlowCondensed.variable} ${rubik.variable} ${shippori.variable} antialiased relative`}
+          className={` ${roboto.variable} ${barlowCondensed.variable} ${rubik.variable} ${shippori.variable} antialiased relative`}
         >
           <AppContext>
             <NavBar />
