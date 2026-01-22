@@ -219,12 +219,13 @@ const NavBar = (props: Props) => {
                   </span>
                 </span>
               </button>
-              <button
-                type="button"
+              <Link
+              href='/contact-us'
+                
                 className="border-[#7cc0ab] font-semibold px-5 py-2 border rounded hover:scale-110 hover:bg-[#7cc0ab] transition-transform duration-250 ease-out text-white"
               >
                 Talk to an Expert
-              </button>
+              </Link>
             </div>
           </div>
         </div>

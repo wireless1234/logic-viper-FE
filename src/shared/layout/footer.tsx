@@ -124,7 +124,7 @@ const Footer = (props: Props) => {
           </div>
           <div className="p-2.5 text-white space-y-4">
             <Link
-              href="https://clients.vicez-oz.com/"
+              href="client-hub"
               className="flex items-center gap-1.5 hover:text-[#7cc0ab]"
             >
               <span>
@@ -134,13 +134,14 @@ const Footer = (props: Props) => {
             </Link>
           </div>
           <div className="p-2.5 text-white space-y-4 flex justify-end">
-            <button
-              type="button"
+            <Link
+            href="/contact-us"
+              
               className="border-[#7cc0ab] font-semibold px-5 py-2 border flex items-center gap-3 rounded hover:scale-110 hover:bg-[#7cc0ab] transition-transform duration-250 ease-out text-[#7cc0ab] hover:text-white h-fit"
             >
               Get Started
               <FaChevronRight />
-            </button>
+            </Link>
           </div>
         </div>
         <hr className="my-3.75 border-[#75bda7]" />
