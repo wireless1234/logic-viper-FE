@@ -18,11 +18,11 @@ const AutomotiveSector = () => {
   return (
     <div className="bg-white">
       <div className="h-[47vh] bg-[url('/images/aboutHeader.webp')] bg-cover bg-no-repeat bg-center relative">
-        <div className="absolute  w-full h-full font-serif bg-black/50 text-end text-white text-[65px] font-bold flex items-center justify-center">
+        <div className="absolute  w-full h-full font-serif bg-black/50 text-center text-white text-[35px] md:text-[50px] lg:text-[65px] font-bold flex items-center justify-center">
           <h1 className="mt-36">About Us</h1>
         </div>
       </div>
-      <div className=" max-w-330 mx-auto px-3 bg-white py-25">
+      <div className=" max-w-330 mx-auto px-3 bg-white py-10 lg:py-25">
         <div className="px-6 xl:px-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-20 gap-x-7">
             <div className="flex items-center">

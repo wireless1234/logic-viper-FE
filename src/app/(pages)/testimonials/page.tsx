@@ -12,7 +12,7 @@ const Testimonials = () => {
     <div className="py-25 bg-white">
       <div className=" max-w-330 mx-auto py-25">
         <div className="p-2.5">
-          <div className="max-w-165 mx-auto text-center mb-25">
+          <div className="max-w-165 mx-auto text-center mb-12 lg:mb-25">
             <h2 className="mb-3.75 text-black leading-12 text-[40px] font-bold  font-serif">
               What Client&apos;s Say About Us
             </h2>
