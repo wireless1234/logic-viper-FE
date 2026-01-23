@@ -34,10 +34,10 @@ const Terms = () => {
                   to and use of our managed security services, IT services,
                   software solutions, and our website (
                   <a
-                    href="https://vicez-oz.com/home/"
+                    href="https://logicviper.com/home/"
                     className="text-[#75BDA7] underline"
                   >
-                    www.vicez-oz.com
+                    www.logicviper.com
                   </a>
                   ). By using our services, you agree to comply with these
                   Terms.
@@ -274,7 +274,7 @@ const Terms = () => {
                   data will be collected, used, and processed in accordance with
                   our{" "}
                   <a
-                    href="https://vicez-oz.com/privacy-policy/"
+                    href="https://logicviper.com/privacy-policy/"
                     className="text-blue-600 underline"
                   >
                     <b>Privacy Policy</b>
@@ -510,7 +510,7 @@ const Terms = () => {
                 <p>
                   <b>Logic Viper</b>
                   <br />
-                  Email: <b>support@vicez-oz.com</b>
+                  Email: <b>support@logicviper.com</b>
                 </p>
               </section>
             </div>

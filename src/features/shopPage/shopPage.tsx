@@ -9,7 +9,7 @@ import { FaRegEye } from "react-icons/fa";
 type Product = {
   id: number;
   name: string;
-  link: string;
+
   img: string;
   price: number;
   oldPrice?: number;
@@ -63,8 +63,8 @@ const Shop = ({ products }: Props) => {
                   index === 0
                     ? "first"
                     : index === products.length - 1
-                    ? "last"
-                    : ""
+                      ? "last"
+                      : ""
                 } `}
               >
                 <div className="single-products">

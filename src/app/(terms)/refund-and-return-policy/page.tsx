@@ -74,7 +74,7 @@ const RefundPolicy = () => {
                 <ul className="list-disc pl-6 space-y-2">
                   <li>
                     <strong>Contact Us:</strong> Email{" "}
-                    <strong>customer@vicez-oz.com</strong> or call{" "}
+                    <strong>customer@logicviper.com</strong> or call{" "}
                     <strong>347-923-0000</strong> within{" "}
                     <strong>14 days</strong> of delivery to initiate a return.
                   </li>
@@ -155,7 +155,7 @@ const RefundPolicy = () => {
                 <p>
                   If a product arrives damaged or defective, contact us within{" "}
                   <strong>7 days</strong> at{" "}
-                  <strong>customer@vicez-oz.com</strong> or{" "}
+                  <strong>customer@logicviper.com</strong> or{" "}
                   <strong>347-923-0000</strong>. We will arrange a return or
                   exchange at no cost.
                 </p>
@@ -192,7 +192,7 @@ const RefundPolicy = () => {
                 <p className="mt-2">
                   <strong>Logic Viper</strong>
                   <br />
-                  Email: <strong>customer@vicez-oz.com</strong>
+                  Email: <strong>customer@logicviper.com</strong>
                 </p>
               </section>
             </section>

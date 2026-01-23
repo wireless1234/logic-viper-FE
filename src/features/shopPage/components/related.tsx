@@ -6,9 +6,7 @@ import { useCart } from "@/context/cartContext";
 import { FaRegEye } from "react-icons/fa";
 import Link from "next/link";
 
-type Props = {};
-
-const RelatedProducts = (props: Props) => {
+const RelatedProducts = () => {
   const { addToCart, isInCart } = useCart();
   return (
     <div className="w-full">
@@ -25,8 +23,8 @@ const RelatedProducts = (props: Props) => {
               index === 0
                 ? "first"
                 : index === dummyProducts.length - 1
-                ? "last"
-                : ""
+                  ? "last"
+                  : ""
             } `}
           >
             <div className="single-products">
@@ -50,7 +48,7 @@ const RelatedProducts = (props: Props) => {
                     {/* Top-left */}
                     <li className="flex items-start justify-start">
                       <Link
-                        href={product.link}
+                        href={`/shop/product?name=${product.name}`}
                         className="inline-flex items-center justify-center
                  rounded-full border bg-white p-4
                  hover:text-[#75bda7] hover:bg-[#75bda7] text-white"

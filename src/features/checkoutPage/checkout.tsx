@@ -10,15 +10,16 @@ import { IoIosCalendar } from "react-icons/io";
 import CheckoutComplete from "./checkoutComplete";
 import { MdOutlineArrowDropUp } from "react-icons/md";
 import { usePaymentMethods } from "@/hooks/usePayment";
-import { getSessionKey } from "@/utils/sessionkey";
+// import { getSessionKey } from "@/utils/sessionkey";
 
 const Checkout = () => {
-  const { cart } = useCart();
+  const { cart, clearCart } = useCart();
   const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
   const [showComplete, setShowComplete] = useState(false);
+  const [addCoupn, setAddCoupn] = useState(false);
   const subtotal = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
 
   const validationSchema = Yup.object({
@@ -85,6 +86,16 @@ const Checkout = () => {
           ? res.data.total_price * 0.6
           : res.data.total_price * 100 * 0.6;
 
+      sessionStorage.setItem(
+        "checkout_complete",
+        JSON.stringify({
+          orderId: res.data.id,
+          total: res.data.total_price,
+          paymentMethod: res.data.payment_method,
+          items: cart,
+        }),
+      );
+
       createPaymentMutation({
         amount,
         currency_code: "USD",
@@ -93,6 +104,7 @@ const Checkout = () => {
         cancel_url: `https://unclev.com.au/checkout/order-success?status=canceled&orderId=${res.data.id}`,
         failure_url: `https://unclev.com.au/checkout/order-success?status=failed&orderId=${res.data.id}`,
       });
+      clearCart();
     },
     onError: () => {
       setIsPaymentProcessing(false);
@@ -119,7 +131,7 @@ const Checkout = () => {
   const handleSubmit = (values: any) => {
     setIsPaymentProcessing(true);
 
-    const session_key = getSessionKey();
+    // const session_key = getSessionKey();
 
     const orderData = {
       payment_method: values.paymentMethod,
@@ -128,6 +140,7 @@ const Checkout = () => {
       email: values.billing_email,
       phone_number: values.billing_phone,
       billing_address: values.billing_address_1,
+      company: values.billing_company,
       shipping_address: values.billing_address_1,
       city: values.billing_city,
       state: values.billing_state,
@@ -136,8 +149,18 @@ const Checkout = () => {
       comments: values.order_comments,
       card_last_four_digits: "1234",
     };
-
-    createOrderMutation({ orderData, session_key });
+    setShowComplete(true);
+    sessionStorage.setItem(
+      "checkout_complete",
+      JSON.stringify({
+        orderId: "12365",
+        total: subtotal,
+        order: orderData,
+        items: cart,
+      }),
+    );
+    clearCart();
+    // createOrderMutation({ orderData, session_key });
   };
 
   return (
@@ -148,11 +171,32 @@ const Checkout = () => {
             <IoIosCalendar className="text-[#75bda7]" />
             <p>
               Have a coupon?{" "}
-              <a href="#" className="underline text-[#75bda7]">
+              <button
+                type="button"
+                onClick={() => setAddCoupn(!addCoupn)}
+                className="hover:underline text-[#75bda7]"
+              >
                 Click here to enter your code
-              </a>
+              </button>
             </p>
           </div>
+          {addCoupn && (
+            <div className="px-7.5 font-rubik font-normal rounded text-[15px] py-5 flex items-center gap-4 border mb-7.5">
+              <input
+                type="text"
+                name=""
+                id=""
+                className="border w-[45%] py-2 px-3"
+                placeholder="coupon code"
+              />
+              <button
+                type="button"
+                className="font-bold bg-[#75bda7] text-sm text-white py-3 px-6"
+              >
+                Apply Coupon
+              </button>
+            </div>
+          )}
 
           <Formik
             initialValues={initialValues}
@@ -276,9 +320,9 @@ const Checkout = () => {
                           name="billing_state"
                           className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
-                          <option value="NY">New York</option>
-                          <option value="CA">California</option>
-                          <option value="TX">Texas</option>
+                          <option value="New York">New York</option>
+                          <option value="California">California</option>
+                          <option value="Texas">Texas</option>
                         </Field>
                       </div>
 
@@ -499,7 +543,7 @@ const Checkout = () => {
                                   new Event("submit", {
                                     cancelable: true,
                                     bubbles: true,
-                                  })
+                                  }),
                                 );
                               }
                             }}

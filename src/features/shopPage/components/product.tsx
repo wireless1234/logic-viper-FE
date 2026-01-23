@@ -29,7 +29,7 @@ const Product = () => {
     if (!ProductName) return null;
 
     return dummyProducts.find(
-      (item) => normalize(item.name) === normalize(ProductName)
+      (item) => normalize(item.name) === normalize(ProductName),
     );
   }, [ProductName]);
 
@@ -49,7 +49,7 @@ const Product = () => {
         price: Number(product.price),
         img: product.img,
       },
-      quantity
+      quantity,
     );
     setShowMessage(true);
 

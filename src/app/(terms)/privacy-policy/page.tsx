@@ -49,8 +49,8 @@ const PrivacyPolicy = () => {
                 <ul className="mt-4 space-y-2">
                   <li>
                     {checkIcon}Information collected through our website
-                    (www.vicez-oz.com), communication platforms, and through any
-                    other interactions you have with us.
+                    (www.logicviper.com), communication platforms, and through
+                    any other interactions you have with us.
                   </li>
                   <li>
                     {checkIcon}Personal data collected from clients, customers,
@@ -341,7 +341,7 @@ const PrivacyPolicy = () => {
                     You may object to the processing of your personal data or
                     request that we restrict the processing of your data under
                     certain conditions. To exercise any of these rights, please
-                    contact us at <b>privacy@vicez-oz.com</b>.
+                    contact us at <b>privacy@logicviper.com</b>.
                   </p>
                 </section>
               </section>
@@ -387,7 +387,7 @@ const PrivacyPolicy = () => {
                 <p>
                   <b>Logic Viper</b>
                   <br />
-                  Email: <b>privacy@vicez-oz.com</b>
+                  Email: <b>privacy@logicviper.com</b>
                 </p>
               </section>
             </div>

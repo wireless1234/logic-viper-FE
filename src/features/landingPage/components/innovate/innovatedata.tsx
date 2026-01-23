@@ -21,7 +21,7 @@ const tabs: Tab[] = [
         </p>
         <div className="mt-8"></div>
         <a
-          href="https://vicez-oz.com/innovative-electronic-protection/"
+          href="https://logicviper.com/innovative-electronic-protection/"
           className="relative px-7.5 py-2.5 overflow-hidden font-medium text-gray-600 bg-[#75bda7] shadow-inner group mt-5"
         >
           {/* Left fill */}
@@ -57,7 +57,7 @@ const tabs: Tab[] = [
         </p>
         <div className="mt-8"></div>
         <a
-          href="https://vicez-oz.com/innovative-electronic-protection/"
+          href="https://logicviper.com/innovative-electronic-protection/"
           className="relative px-7.5 py-2.5 overflow-hidden font-medium text-gray-600 bg-[#75bda7] shadow-inner group mt-5"
         >
           {/* Left fill */}
@@ -95,7 +95,7 @@ const tabs: Tab[] = [
         </p>
         <div className="mt-8"></div>
         <a
-          href="https://vicez-oz.com/innovative-electronic-protection/"
+          href="https://logicviper.com/innovative-electronic-protection/"
           className="relative px-7.5 py-2.5 overflow-hidden font-medium text-gray-600 bg-[#75bda7] shadow-inner group mt-5"
         >
           {/* Left fill */}
@@ -134,7 +134,7 @@ const tabs: Tab[] = [
         </p>
         <div className="mt-8"></div>
         <a
-          href="https://vicez-oz.com/innovative-electronic-protection/"
+          href="https://logicviper.com/innovative-electronic-protection/"
           className="relative px-7.5 py-2.5 overflow-hidden font-medium text-gray-600 bg-[#75bda7] shadow-inner group mt-5"
         >
           {/* Left fill */}

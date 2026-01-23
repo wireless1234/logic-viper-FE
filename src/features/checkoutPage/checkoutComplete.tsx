@@ -1,112 +1,122 @@
-import React from "react";
+"use client";
 
-import { useCart } from "../../context/cartContext";
+import React, { useEffect, useState } from "react";
 import { IoCallOutline } from "react-icons/io5";
 import { GrMailOption } from "react-icons/gr";
-type Props = {};
+import { Order } from "../../types/order";
 
-const CheckoutComplete = (props: Props) => {
-  const { cart } = useCart();
-  const subtotal = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+const CheckoutComplete = () => {
+  const [order, setOrder] = useState<any>(null);
+
+  useEffect(() => {
+    const stored = sessionStorage.getItem("checkout_complete");
+    if (stored) {
+      setOrder(JSON.parse(stored));
+    }
+  }, []);
+
+  if (!order) {
+    return (
+      <main className="p-6">
+        <h1 className="text-xl font-semibold">Order not found</h1>
+        <p>Please contact support if you believe this is an error.</p>
+      </main>
+    );
+  }
+
   return (
-    <div className=" mx-auto p-6">
-      <p className="font-rubik text-[15px]">
+    <main className="mx-auto p-6" aria-labelledby="order-complete-title">
+      <h1 id="order-complete-title" className="font-rubik text-[15px] mb-6">
         Thank you. Your order has been received.
-      </p>
-      <div className="flex items-center py-2 mb-10">
-        <div className="border-r px-4 border-dashed">
-          <p className="uppercase text-[11px]">Order Number:</p>
-          <p className="font-bold text-[15px]">12345</p>
-        </div>
-        <div className="border-r px-4 border-dashed">
-          <p className="uppercase text-[11px]">Date:</p>
-          <p className="font-bold text-[15px]">January 14, 2026</p>
-        </div>
-        <div className="border-r px-4 border-dashed">
-          <p className="uppercase text-[11px]">Total:</p>
-          <p className="font-bold text-[15px]">$15.00</p>
-        </div>
-        <div className="px-4">
-          <p className="uppercase text-[11px]">Payment Method:</p>
-          <p className="font-bold text-[15px]">Direct bank transfer</p>
-        </div>
-      </div>
-      <h2 className="text-[30px] font-serif font-semibold mb-3">
-        Order Details
-      </h2>
-      <div className="  ">
-        <table className="w-full border-separate mb-6 border border-[#0000001a] rounded">
+      </h1>
+
+      {/* Order Meta */}
+      <section className="flex flex-wrap py-2 mb-10 gap-y-4">
+        <Meta label="Order Number" value={order.orderId} />
+        <Meta
+          label="Date"
+          value={new Date(order.createdAt).toLocaleDateString()}
+        />
+        <Meta label="Total" value={`$${order.total}`} />
+        <Meta label="Payment Method" value={order.order.payment_method} />
+      </section>
+
+      {/* Order Details */}
+      <section aria-labelledby="order-details-title">
+        <h2
+          id="order-details-title"
+          className="text-[30px] font-serif font-semibold mb-3"
+        >
+          Order Details
+        </h2>
+
+        <table className="w-full border border-[#0000001a] rounded mb-6 border-separate">
           <thead>
-            <tr className="border-b border-gray-300">
-              <th className="text-left border px-3 py-[9px] font-medium">
+            <tr>
+              <th scope="col" className="text-left px-3 py-2 border">
                 Product
               </th>
-              <th className=" px-3 py-[9px] text-left border font-medium">
+              <th scope="col" className="text-left px-3 py-2 border">
                 Total
               </th>
             </tr>
           </thead>
           <tbody>
-            {cart.map((item) => (
-              <tr key={item.id} className="border-b border-gray-200">
-                <td className="px-3 py-[9px] border  text-[#75BDA7]">
-                  <span className="underline hover:no-underline ">
-                    {item.name} {""}
-                  </span>
-                  <strong className="text-black">x {item.quantity}</strong>
+            {order.items.map((item: any) => (
+              <tr key={item.id}>
+                <td className="px-3 py-2 border text-[#75BDA7]">
+                  <span className="underline">{item.name}</span>{" "}
+                  <strong className="text-black">× {item.quantity}</strong>
                 </td>
-                <td className=" px-3 py-[9px] border">
+                <td className="px-3 py-2 border">
                   ${item.price * item.quantity}
                 </td>
               </tr>
             ))}
           </tbody>
-          <tfoot>
-            <tr className="border-t border-gray-300">
-              <th className="px-3 py-[9px] text-[13px] text-left border font-bold">
-                Subtotal
-              </th>
-              <td className="px-3 border py-[9px]">${subtotal}</td>
-            </tr>
-            <tr className="border-t border-gray-300">
-              <th className="px-3 border py-[9px] text-[13px] text-left font-bold">
-                Total
-              </th>
-              <td className="px-3 py-[9px] border ">${subtotal}</td>
-            </tr>
-            <tr className="border-t border-gray-300">
-              <th className="px-3 border py-[9px] text-[13px] text-left font-bold">
-                Payment method:
-              </th>
-              <td className="px-3 py-[9px] border ">Direct bank transfer</td>
-            </tr>
-          </tfoot>
         </table>
-      </div>
-      <h2 className="text-[30px] font-serif font-semibold mb-3">
-        Billing Address
-      </h2>
-      <div className="rounded border shadow p-4 space-y-2">
-        <p className="font-rubik text-[15px]">Name</p>
-        <p className="font-rubik text-[15px]">Company</p>
-        <p className="font-rubik text-[15px]">Area</p>
-        <p className="font-rubik text-[15px]">state</p>
-        <p className="font-rubik text-[15px]">city</p>
-        <p className="font-rubik text-[15px]">country</p>
-        <div className="mt-4 flex gap-2 items-center">
-          <IoCallOutline />
-          <span>phone number</span>
-        </div>
-        <div className="mt-4 flex gap-2 items-center">
-          <GrMailOption />
-          <span>emaail</span>
-        </div>
-      </div>
-    </div>
+      </section>
+
+      {/* Billing Address */}
+      <section aria-labelledby="billing-title">
+        <h2
+          id="billing-title"
+          className="text-[30px] font-serif font-semibold mb-3"
+        >
+          Billing Address
+        </h2>
+
+        <address className="rounded border  p-4 space-y-1 not-italic">
+          <p>
+            {order.order.first_name} {order.order.last_name}
+          </p>
+          {order.order.company && <p>{order.order.company}</p>}
+          <p>{order.order.billing_address}</p>
+          <p>
+            {order.order.city}, {order.order.state}
+          </p>
+          <p>{order.order.country}</p>
+
+          <div className="mt-4 flex gap-2 items-center">
+            <IoCallOutline aria-hidden />
+            <span>{order.order.phone_number}</span>
+          </div>
+
+          <div className="mt-2 flex gap-2 items-center">
+            <GrMailOption aria-hidden />
+            <span>{order.order.email}</span>
+          </div>
+        </address>
+      </section>
+    </main>
   );
 };
+
+const Meta = ({ label, value }: { label: string; value: string }) => (
+  <div className="border-r px-4 border-dashed">
+    <p className="uppercase text-[11px]">{label}</p>
+    <p className="font-bold text-[15px]">{value}</p>
+  </div>
+);
 
 export default CheckoutComplete;
