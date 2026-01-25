@@ -40,7 +40,7 @@ const logos = [
 const LogoCarousel = () => {
   return (
     <div className="p-2.5">
-      <div className="py-25">
+      <div className="py-10 lg:py-25">
         <Carousel
           opts={{
             align: "start",

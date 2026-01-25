@@ -38,7 +38,7 @@ const Hero = (props: Props) => {
                 </p>
                 <div className="flex items-center gap-6 w-fit mx-auto lg:mx-0 font-rubik">
                   <a
-                    href="#_"
+                    href="/contact-us"
                     className="relative px-7.5 py-2.5 overflow-hidden font-medium text-gray-600 bg-[#75bda7] shadow-inner group"
                   >
                     {/* Left fill */}
@@ -56,7 +56,7 @@ const Hero = (props: Props) => {
                     </span>
                   </a>
                   <a
-                    href="#_"
+                    href="/about"
                     className="relative px-7.5 py-2.5 overflow-hidden font-medium text-gray-600 bg-white shadow-inner group"
                   >
                     {/* Left fill */}

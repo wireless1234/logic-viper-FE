@@ -21,7 +21,7 @@ const tabs: Tab[] = [
         </p>
         <div className="mt-8"></div>
         <a
-          href="https://logicviper.com/innovative-electronic-protection/"
+          href="innovative-electronic-protection/"
           className="relative px-7.5 py-2.5 overflow-hidden font-medium text-gray-600 bg-[#75bda7] shadow-inner group mt-5"
         >
           {/* Left fill */}
@@ -57,7 +57,7 @@ const tabs: Tab[] = [
         </p>
         <div className="mt-8"></div>
         <a
-          href="https://logicviper.com/innovative-electronic-protection/"
+          href="/innovative-electronic-protection/"
           className="relative px-7.5 py-2.5 overflow-hidden font-medium text-gray-600 bg-[#75bda7] shadow-inner group mt-5"
         >
           {/* Left fill */}
@@ -95,7 +95,7 @@ const tabs: Tab[] = [
         </p>
         <div className="mt-8"></div>
         <a
-          href="https://logicviper.com/innovative-electronic-protection/"
+          href="/innovative-electronic-protection/"
           className="relative px-7.5 py-2.5 overflow-hidden font-medium text-gray-600 bg-[#75bda7] shadow-inner group mt-5"
         >
           {/* Left fill */}
@@ -134,7 +134,7 @@ const tabs: Tab[] = [
         </p>
         <div className="mt-8"></div>
         <a
-          href="https://logicviper.com/innovative-electronic-protection/"
+          href="/innovative-electronic-protection/"
           className="relative px-7.5 py-2.5 overflow-hidden font-medium text-gray-600 bg-[#75bda7] shadow-inner group mt-5"
         >
           {/* Left fill */}
@@ -204,7 +204,7 @@ export default function SlidingTabs() {
       </ul>
 
       {/* Content stack */}
-      <div className="relative mt-6 overflow-hidden min-h-85 lg:min-h-75">
+      <div className="relative mt-6 overflow-hidden min-h-96 lg:min-h-75">
         {/* Outgoing */}
         {prevIndex !== null && (
           <div
